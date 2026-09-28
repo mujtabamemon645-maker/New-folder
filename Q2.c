@@ -1,31 +1,39 @@
-# include <stdio.h>
-int main(){ 
-int Age, Income, Credit_score;
-char Existing_loan[3];
+#include <stdio.h>
 
+int main() {
+    int age, credit_score;
+    float monthly_income;
+    char existing_loan[10];
 
- printf("Enter Age: ");
- scanf("%d", &Age); 
- printf("Enter Income: ");
- scanf("%d", &Income);
- printf("Enter Credit Score: ");
- scanf("%d", &Credit_score);
- printf("Do you have any existing loan? (Yes/No): ");
- scanf("%s", Existing_loan);
+    // Input details
+    printf("Enter Age: ");
+    scanf("%d", &age);
 
- if(Age >= 21 && Income >= 100000 && Credit_score >= 750 && (Existing_loan[0] == 'N' || Existing_loan[0] == 'n')) {
-     printf("High Approval CHnce\n");
- } elseif(Age >= 21 && Income >= 75000 && Credit_score >= 650 && (Existing_loan[0] == 'Y' || Existing_loan[0] == 'y')) {
-     printf("Manual Review\n");
- } elseif(Age >= 21 && Income >= 50000 && Credit_score >= 600) {
-     printf("Possibly Eligible\n");
- } else {
-     printf("Rejected\n");
+    printf("Enter Monthly Income: ");
+    scanf("%f", &monthly_income);
 
- 
-  
- }
- return 0;
+    printf("Enter Credit Score: ");
+    scanf("%d", &credit_score);
+
+    printf("Is there an Existing Loan? (Yes/No or Y/N): ");
+    scanf("%s", existing_loan);
+
+    // Convert existing loan response to 'y' or 'n'
+    char has_loan = (existing_loan[0] == 'Y' || existing_loan[0] == 'y') ? 'y' : 'n';
+
+    // Decision Structure based on approval rules
+    if (age >= 21 && monthly_income >= 100000 && credit_score >= 750 && has_loan == 'n') {
+        printf("\nResult: High Approval Chance\n");
+    } 
+    else if (age >= 21 && monthly_income >= 75000 && credit_score >= 650 && has_loan == 'y') {
+        printf("\nResult: Manual Review\n");
+    } 
+    else if (age >= 21 && monthly_income >= 50000 && credit_score >= 600) {
+        printf("\nResult: Possibly Eligible\n");
+    } 
+    else {
+        printf("\nResult: Rejected\n");
+    }
+
+    return 0;
 }
-  
- 
